@@ -29,7 +29,7 @@ To become a Flutter full-stack developer, you'll start by understanding both fro
 
 ## 2. Understand Flutter for Frontend
 - **Focus**: Widgets, state management, routing, and the widget lifecycle.
-- Status: ![Learning...](https://github.com/user-attachments/assets/5db0382c-bcec-4740-a1ea-6b66a619dac3)
+- Status: ![Basic Done](https://github.com/user-attachments/assets/4a9bd46f-7f18-4f86-9c03-02c7b7c4b9ce)
 
 ## 3. Practice Basic Flutter Projects
 - **Projects**: Calculator, to-do list, or a weather app.

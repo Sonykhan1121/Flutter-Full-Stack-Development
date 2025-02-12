@@ -3,9 +3,9 @@
 To become a Flutter full-stack developer, you'll start by understanding both front-end and backend development using Flutter and Dart, along with necessary backend technologies. Here's a step-by-step guide to help you on your journey:
 
 ## Progress Indicators
-- ![Basic Done](https://github.com/user-attachments/assets/4a9bd46f-7f18-4f86-9c03-02c7b7c4b9ce) Basic Done
-- ![Learning...](https://github.com/user-attachments/assets/5db0382c-bcec-4740-a1ea-6b66a619dac3) Learning...
-- ![Done](https://github.com/user-attachments/assets/c5c7ca61-5d3b-4a6e-ae38-f0090a612664) Done
+**_![Basic Done](https://github.com/user-attachments/assets/4a9bd46f-7f18-4f86-9c03-02c7b7c4b9ce) Basic Done
+![Learning...](https://github.com/user-attachments/assets/5db0382c-bcec-4740-a1ea-6b66a619dac3) Learning...
+![Done](https://github.com/user-attachments/assets/c5c7ca61-5d3b-4a6e-ae38-f0090a612664) Done_**
 
 ## Table of Contents
 - [1. Learn the Basics of Dart](#1-learn-the-basics-of-dart)
@@ -34,7 +34,7 @@ To become a Flutter full-stack developer, you'll start by understanding both fro
 ## 3. Practice Basic Flutter Projects
 - **Projects**: Calculator, to-do list, or a weather app.
 - **Purpose**: To apply your knowledge and understand the framework better.
-- Status: 
+- Status: ![Learning...](https://github.com/user-attachments/assets/5db0382c-bcec-4740-a1ea-6b66a619dac3) Learning...
 
 ## 4. Advanced Flutter Concepts
 - **Topics**: Animations, custom widgets, and deeper state management solutions like Provider.

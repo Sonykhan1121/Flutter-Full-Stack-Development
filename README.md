@@ -32,14 +32,14 @@ To become a Flutter full-stack developer, you'll start by understanding both fro
 - Status: ![Basic Done](https://github.com/user-attachments/assets/4a9bd46f-7f18-4f86-9c03-02c7b7c4b9ce)
 
 ## 3. Practice Basic Flutter Projects
-- **Projects**: Calculator, to-do list, or a weather app.
+- **Projects**: Practice some designs
 - **Purpose**: To apply your knowledge and understand the framework better.
-- Status: ![Learning...](https://github.com/user-attachments/assets/5db0382c-bcec-4740-a1ea-6b66a619dac3) Learning...
+- Status: ![Basic Done](https://github.com/user-attachments/assets/4a9bd46f-7f18-4f86-9c03-02c7b7c4b9ce)
 
 ## 4. Advanced Flutter Concepts
 - **Topics**: Animations, custom widgets, and deeper state management solutions like Provider.
 - **Resource**: Advanced tutorials on YouTube or Flutter courses on Udemy.
-- Status: 
+- Status: ![Learning...](https://github.com/user-attachments/assets/5db0382c-bcec-4740-a1ea-6b66a619dac3) Learning...
 
 ## 5. Introduction to Backend Development
 - **Languages**: Learn the basics of a backend language (Node.js/Python/Go).

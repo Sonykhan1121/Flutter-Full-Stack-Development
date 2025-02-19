@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test_widget/TextExpandFeatures/provider/text_expanded_provider.dart';
 import 'package:test_widget/TextExpandFeatures/textexpand.dart';
 import 'package:test_widget/constants/constant.dart';
-
-import 'homepage.dart';
+import 'package:test_widget/image_features/image_test.dart';
+import 'package:test_widget/image_features/loadingimage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,12 +15,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Test Widgets",
-      theme: ThemeData(
-        primaryColor: Colors.red,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=> TextExpandedProvider()),
+        
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: Constant.title,
+        theme: ThemeData(
+          primaryColor: Colors.blue,
+        ),
+        home: Loadingimage(),
       ),
-      home: Textexpand(txt: Constant.gerbage,),
+
     );
   }
 }

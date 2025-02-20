@@ -11,6 +11,7 @@ import 'package:test_widget/file_features/imageconversionexample.dart';
 import 'package:test_widget/image_features/image_test.dart';
 import 'package:test_widget/image_features/loadingimage.dart';
 import 'package:test_widget/listview_features/list_view_test.dart';
+import 'package:test_widget/scaffold_features/scaffold_test.dart';
 
 import 'card_features/card_test.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: AppbarTesting(),
+        home: ScaffoldTest(),
       ),
 
     );

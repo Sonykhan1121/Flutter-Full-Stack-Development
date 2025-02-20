@@ -28,16 +28,29 @@ class _ButtonsState extends State<Buttons> {
               style: ElevatedButton.styleFrom(
                 textStyle: const TextStyle(fontSize: 16),
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                backgroundColor: Colors.blue, // Correct: A Color, not a MaterialStateProperty
+                backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
-                elevation: 5,
+                elevation: 20,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                overlayColor: Colors.teal,
+              ).copyWith(
+                overlayColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.red.withOpacity(0.5); // Customize color for pressed state
+                  } else if (states.contains(MaterialState.hovered)) {
+                    return Colors.yellow.withOpacity(0.3); // Customize color for hovered state
+                  } else if (states.contains(MaterialState.focused)) {
+                    return Colors.green.withOpacity(0.4); // Customize color for focused state
+                  } else if (states.contains(MaterialState.disabled)) {
+                    return Colors.grey; // Customize color for disabled state
+                  }
+                  return Colors.transparent; // Default color
+                }),
               ),
               child: const Text('Click Me'),
             ),
+
 
             TextButton(onPressed: (){}, child: Text("click me")),
             IconButton(onPressed: (){}, icon: Icon(Icons.add)),

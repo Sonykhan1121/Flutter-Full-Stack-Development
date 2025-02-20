@@ -14,6 +14,7 @@ import 'package:test_widget/listview_features/list_view_test.dart';
 import 'package:test_widget/scaffold_features/scaffold_test.dart';
 
 import 'card_features/card_test.dart';
+import 'mediaquery_features/mediaquery_testing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: ScaffoldTest(),
+        home: MediaqueryTesting(),
       ),
 
     );

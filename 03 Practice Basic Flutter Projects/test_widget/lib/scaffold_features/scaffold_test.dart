@@ -12,7 +12,7 @@ class _ScaffoldTestState extends State<ScaffoldTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Full-Featured Scaffold')),
-      body: Center(child: Text('Tap the button to see a SnackBar.')),
+      body: SafeArea(child: Center(child: Text('Tap the button to see a SnackBar.'))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(

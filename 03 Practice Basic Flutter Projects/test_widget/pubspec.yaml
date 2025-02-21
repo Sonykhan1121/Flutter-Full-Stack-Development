@@ -38,6 +38,11 @@ dependencies:
   cached_network_image: ^3.4.1
   image_picker: ^1.1.2
   path_provider: ^2.1.5
+  audioplayers: ^6.2.0
+  audio_session: ^0.1.25
+  just_audio: ^0.9.46
+  audio_service: ^0.18.17
+  flutter_cache_manager: ^3.4.1
 
 dev_dependencies:
   flutter_test:

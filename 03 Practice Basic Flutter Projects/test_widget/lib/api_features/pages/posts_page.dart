@@ -16,7 +16,7 @@ class _PostsPageState extends State<PostsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-   
+
       Provider.of<PostsProvider>(context, listen: false).loadPosts();
 
   }
@@ -24,7 +24,7 @@ class _PostsPageState extends State<PostsPage> {
   Widget build(BuildContext context) {
     final postsProvider = Provider.of<PostsProvider>(context);
     final list = postsProvider.listOfPosts;
-    print(list);
+    // print(list);
     return Scaffold(
       appBar: AppBar(
         title: Text('Posts'),

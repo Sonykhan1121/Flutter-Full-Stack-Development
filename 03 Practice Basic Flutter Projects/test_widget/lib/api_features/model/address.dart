@@ -9,6 +9,8 @@ class Address {
 
   Address({this.street, this.suite, this.city, this.zipcode, this.geo});
 
+
+
   Address.fromJson(Map<String, dynamic> json) {
     street = json['street'];
     suite = json['suite'];

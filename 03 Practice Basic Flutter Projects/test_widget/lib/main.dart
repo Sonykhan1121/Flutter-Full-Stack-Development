@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_widget/TextExpandFeatures/provider/text_expanded_provider.dart';
+import 'package:test_widget/api_features/pages/comments_page.dart';
 import 'package:test_widget/api_features/pages/posts_page.dart';
+import 'package:test_widget/api_features/pages/signup.dart';
+import 'package:test_widget/api_features/providers/comments_provider.dart';
 import 'package:test_widget/api_features/providers/posts_provider.dart';
 import 'package:test_widget/constants/constant.dart';
 
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_)=> TextExpandedProvider()),
         ChangeNotifierProvider(create: (_)=> PostsProvider() ),
+        ChangeNotifierProvider(create: (_)=>CommentsProvider()),
         
       ],
       child: MaterialApp(
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: PostsPage(),
+        home: SignupPage(),
       ),
 
     );

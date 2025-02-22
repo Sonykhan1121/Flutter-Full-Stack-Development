@@ -10,6 +10,8 @@ class MusicPlayerScreen extends StatefulWidget {
 class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
   double _currentSliderValue = 0.0;
+  Duration _currentPosition = Duration.zero;
+  Duration? _duration ;
   bool isPlaying = false;
   bool isLoading = false;
 
@@ -38,20 +40,26 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
     _audioPlayer.positionStream.listen((duration) {
       setState(() {
         _currentSliderValue = duration.inSeconds.toDouble();
+        _currentPosition = duration;
+        _duration = _audioPlayer.duration;
       });
     });
   }
+  String formatDuration(Duration duration)
+  {
+    String twoDigits(int n) => n.toString().padLeft(2,'0');
+    return "${twoDigits(duration.inHours)}:${twoDigits(duration.inMinutes)}:${twoDigits(duration.inSeconds)}";
+  }
 
   void _playPauseAudio() async {
-    setState(() => isPlaying = !isPlaying);
 
-    if (isPlaying) {
+
+    if (!isPlaying) {
       await _audioPlayer.pause();
     } else {
-
       await _audioPlayer.play();
-
     }
+
 
   }
 
@@ -91,6 +99,14 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
             ),
 
             SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('running: ${formatDuration(_currentPosition)}'),
+                Text("Total:${formatDuration(_duration!)}"),
+              ],
+            ),
+            SizedBox(height:20),
 
             // Music Controls
             Row(
@@ -105,7 +121,12 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                     ? CircularProgressIndicator(color: Colors.purple) // Show Loader
                     : IconButton(
                   icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow, size: 50, color: Colors.purple),
-                  onPressed: _playPauseAudio,
+                  onPressed:(){
+                    setState(() {
+                      isPlaying = !isPlaying;
+                    });
+                    _playPauseAudio();
+                  } ,
                 ),
 
                 IconButton(

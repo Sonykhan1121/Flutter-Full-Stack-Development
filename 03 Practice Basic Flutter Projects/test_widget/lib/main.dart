@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:test_widget/TextExpandFeatures/provider/text_expanded_provider.dart';
 import 'package:test_widget/api_features/pages/comments_page.dart';
 import 'package:test_widget/api_features/pages/posts_page.dart';
+import 'package:test_widget/api_features/pages/sendimage.dart';
 import 'package:test_widget/api_features/pages/signup.dart';
 import 'package:test_widget/api_features/providers/comments_provider.dart';
 import 'package:test_widget/api_features/providers/posts_provider.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: SignupPage(),
+        home: ImageUploadPage(),
       ),
 
     );

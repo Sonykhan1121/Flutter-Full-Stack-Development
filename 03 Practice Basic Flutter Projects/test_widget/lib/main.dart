@@ -7,6 +7,7 @@ import 'package:test_widget/api_features/pages/sendimage.dart';
 import 'package:test_widget/api_features/pages/signup.dart';
 import 'package:test_widget/api_features/providers/comments_provider.dart';
 import 'package:test_widget/api_features/providers/posts_provider.dart';
+import 'package:test_widget/bluetooth_features/testpage.dart';
 import 'package:test_widget/constants/constant.dart';
 
 import 'audiofeatures/audio_player.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.blue,
         ),
-        home: ImageUploadPage(),
+        home: Testpage(),
       ),
 
     );

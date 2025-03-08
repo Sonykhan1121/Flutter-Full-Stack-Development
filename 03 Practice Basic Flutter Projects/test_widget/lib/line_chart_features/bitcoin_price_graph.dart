@@ -142,6 +142,7 @@ class _BitcoinPriceGraphState extends State<BitcoinPriceGraph> {
                   right: 18.0,
                 ),
                 child: LineChart(
+
                   transformationConfig: FlTransformationConfig(
                     scaleAxis: FlScaleAxis.horizontal,
                     minScale: 1.0,
@@ -151,6 +152,7 @@ class _BitcoinPriceGraphState extends State<BitcoinPriceGraph> {
                     transformationController: _transformationController,
                   ),
                   LineChartData(
+                    backgroundColor: Colors.black,
                     lineBarsData: [
                       LineChartBarData(
                         spots: _bitcoinPriceHistory?.asMap().entries.map((e) {
@@ -226,7 +228,7 @@ class _BitcoinPriceGraphState extends State<BitcoinPriceGraph> {
                                   style: TextStyle(
                                     color: Colors.green,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 12.sp,
+                                    fontSize: 12,
                                   ),
                                 ),
                                 TextSpan(
@@ -238,7 +240,7 @@ class _BitcoinPriceGraphState extends State<BitcoinPriceGraph> {
                                   style:  TextStyle(
                                     color: Colors.yellow,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16.sp,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
@@ -269,7 +271,7 @@ class _BitcoinPriceGraphState extends State<BitcoinPriceGraph> {
                       bottomTitles: AxisTitles(
                         sideTitles: SideTitles(
                           showTitles: true,
-                          reservedSize: 38.sp,
+                          reservedSize: 38,
                           maxIncluded: false,
                           getTitlesWidget: (double value, TitleMeta meta) {
                             final date = _bitcoinPriceHistory![value.toInt()].$1;
@@ -281,7 +283,7 @@ class _BitcoinPriceGraphState extends State<BitcoinPriceGraph> {
                                   '${date.month}/${date.day}',
                                   style:  TextStyle(
                                     color: Colors.green,
-                                    fontSize: 12.sp,
+                                    fontSize: 8.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginTest> {
               Text(_errorMessage, style: TextStyle(color: Colors.red)),
             ElevatedButton(
               onPressed: (){
-                AppRouterVersion1.isauth = true;
+
                 Navigator.popAndPushNamed(context, '/');
 
               },

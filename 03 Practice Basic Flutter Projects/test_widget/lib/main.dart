@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:test_widget/TextExpandFeatures/provider/text_expanded_provider.dart';
 import 'package:test_widget/api_features/providers/comments_provider.dart';
@@ -22,14 +23,22 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>CommentsProvider()),
         
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: Constant.title,
-        theme: ThemeData(
-          primaryColor: Colors.blue,
-        ),
-        initialRoute: "/image_zooming",
-        onGenerateRoute: AppRouterVersion1.route,
+      child: ScreenUtilInit(
+        designSize: Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+
+        builder: (context,child){
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: "Testing All",
+            theme: ThemeData(
+              primaryColor: Colors.blue,
+            ),
+            onGenerateRoute: AppRouterVersion1.route,
+            initialRoute: "/bitcoinpricegpaph",
+          );
+        },
       ),
 
     );

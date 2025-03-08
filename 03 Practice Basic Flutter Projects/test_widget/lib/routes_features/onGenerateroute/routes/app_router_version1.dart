@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test_widget/routes_features/gorouter/pages/error_test.dart';
-import 'package:test_widget/routes_features/gorouter/pages/home_test.dart';
-import 'package:test_widget/routes_features/gorouter/pages/login_test.dart';
-import 'package:test_widget/routes_features/gorouter/pages/profile_test.dart';
+import 'package:test_widget/TransformationController/image_zoom_and_scapping.dart';
 
+import '../pages/error_test.dart';
+import '../pages/home_test.dart';
+import '../pages/login_test.dart';
+import '../pages/profile_test.dart';
 import '../pages/signup_test.dart';
 
 class AppRouterVersion1{
@@ -43,6 +44,10 @@ class AppRouterVersion1{
           }
 
 
+      }
+    else if(settings.name=='/image_zooming')
+      {
+        return MaterialPageRoute(builder: (context)=>ImageZoomAndScapping());
       }
     else
       {

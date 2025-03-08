@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_widget/routes_features/gorouter/routes/app_router_version1.dart';
+
+import '../routes/app_router_version1.dart';
+
 
 class LoginTest extends StatefulWidget {
   @override

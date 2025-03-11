@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_widget/TransformationController/image_zoom_and_scapping.dart';
+import 'package:test_widget/azlistview_packages/azlist_test.dart';
 import 'package:test_widget/column_features/column_test.dart';
 
 import '../../../line_chart_features/bitcoin_price_graph.dart';
@@ -59,6 +60,10 @@ class AppRouterVersion1{
     else if(settings.name == '/logtest')
       {
         return MaterialPageRoute(builder: (context)=> LoggingTest());
+      }
+    else if(settings.name =='/azlist')
+      {
+        return MaterialPageRoute(builder: (context)=>AzlistTest());
       }
     else
       {

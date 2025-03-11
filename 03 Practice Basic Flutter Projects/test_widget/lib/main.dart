@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:test_widget/TextExpandFeatures/provider/text_expanded_provider.dart';
@@ -9,6 +12,7 @@ import 'package:test_widget/routes_features/onGenerateroute/routes/app_router_ve
 
 void main() {
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +40,7 @@ class MyApp extends StatelessWidget {
               primaryColor: Colors.blue,
             ),
             onGenerateRoute: AppRouterVersion1.route,
-            initialRoute: "/logtest",
+            initialRoute: "/azlist",
           );
         },
       ),

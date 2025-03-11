@@ -3,6 +3,7 @@ import 'package:test_widget/TransformationController/image_zoom_and_scapping.dar
 import 'package:test_widget/column_features/column_test.dart';
 
 import '../../../line_chart_features/bitcoin_price_graph.dart';
+import '../../../logging_features/logging_test.dart';
 import '../pages/error_test.dart';
 import '../pages/home_test.dart';
 import '../pages/login_test.dart';
@@ -54,6 +55,10 @@ class AppRouterVersion1{
     else if(settings.name == '/columnTest')
       {
         return MaterialPageRoute(builder: (context)=> ColumnTest());
+      }
+    else if(settings.name == '/logtest')
+      {
+        return MaterialPageRoute(builder: (context)=> LoggingTest());
       }
     else
       {

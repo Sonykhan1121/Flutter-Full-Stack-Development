@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               primaryColor: Colors.blue,
             ),
             onGenerateRoute: AppRouterVersion1.route,
-            initialRoute: "/bitcoinpricegpaph",
+            initialRoute: "/logtest",
           );
         },
       ),

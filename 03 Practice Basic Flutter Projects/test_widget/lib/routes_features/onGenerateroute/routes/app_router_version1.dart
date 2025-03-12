@@ -4,6 +4,7 @@ import 'package:test_widget/azlistview_packages/azlist_test.dart';
 import 'package:test_widget/column_features/column_test.dart';
 
 import '../../../azlistview_packages/normal_azlist.dart';
+import '../../../flutter_toast/toast_test.dart';
 import '../../../line_chart_features/bitcoin_price_graph.dart';
 import '../../../logging_features/logging_test.dart';
 import '../pages/error_test.dart';
@@ -64,7 +65,7 @@ class AppRouterVersion1{
       }
     else if(settings.name =='/azlist')
       {
-        return MaterialPageRoute(builder: (context)=>AzlistTest());
+        return MaterialPageRoute(builder: (context)=>ToastTest());
       }
     else
       {

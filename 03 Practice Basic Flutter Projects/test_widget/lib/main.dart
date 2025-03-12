@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:test_widget/TextExpandFeatures/provider/text_expanded_provider.dart';
 import 'package:test_widget/api_features/providers/comments_provider.dart';
 import 'package:test_widget/api_features/providers/posts_provider.dart';
-import 'package:test_widget/constants/constant.dart';
 import 'package:test_widget/routes_features/onGenerateroute/routes/app_router_version1.dart';
 
 void main() {
@@ -40,7 +36,7 @@ class MyApp extends StatelessWidget {
               primaryColor: Colors.blue,
             ),
             onGenerateRoute: AppRouterVersion1.route,
-            initialRoute: "/azlist",
+            initialRoute: "/camera_handler",
           );
         },
       ),

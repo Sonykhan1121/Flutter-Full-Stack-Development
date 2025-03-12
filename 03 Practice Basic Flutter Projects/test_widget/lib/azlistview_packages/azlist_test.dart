@@ -32,7 +32,7 @@ class _AzlistTestState extends State<AzlistTest> {
     ];
     for(int i =0;i<tags.length;i++)
       {
-    _contacts.add(MySuspensionBean(tag: tags[i], names: a[i]));
+    _contacts.add(MySuspensionBean(tag: tags[i], names: a[i],isShowSuspension: true));
       }
   }
   Decoration getIndexBarDecoration(Color color) {
@@ -54,12 +54,21 @@ class _AzlistTestState extends State<AzlistTest> {
           itemBuilder: (context, index) {
             return Card(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              elevation: 3,
+              elevation: 0,
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    if (_contacts[index].isShowSuspension)
+                      Container(
+                        color: Colors.grey[300],
+                        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        child: Text(
+                          _contacts[index].getSuspensionTag(),
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
 
                     ...(_contacts[index] as MySuspensionBean).names.map((name) => Text(name)),
                   ],
@@ -77,18 +86,20 @@ class _AzlistTestState extends State<AzlistTest> {
             width: 60.0,
             height: 60.0,
             decoration: BoxDecoration(
-              color: Colors.blue[700]!.withAlpha(200),
+              color: Colors.red[700]!.withAlpha(200),
               shape: BoxShape.circle,
             ),
             child:
-            Text(hint, style: TextStyle(color: Colors.red, fontSize: 30.0)),
+            Text(hint, style: TextStyle(color: Colors.white, fontSize: 30.0)),
           );
         },
-        indexBarMargin: EdgeInsets.all(10),
+        indexBarMargin: EdgeInsets.all(0),
         indexBarOptions: IndexBarOptions(
           needRebuild: true,
-          decoration: getIndexBarDecoration(Colors.grey[50]!),
-          downDecoration: getIndexBarDecoration(Colors.grey[200]!),
+          decoration: getIndexBarDecoration(Colors.red[50]!),
+          downDecoration: getIndexBarDecoration(Colors.green[200]!),
+          indexHintTextStyle: TextStyle(fontWeight: FontWeight.bold),
+
         )
 
 

@@ -11,7 +11,8 @@ class AzlistTest extends StatefulWidget {
 
 class _AzlistTestState extends State<AzlistTest> {
   final List<ISuspensionBean> _contacts =[];
-  final tags = ["A", "B", "C", "D", "E", "F", "G"];
+  final tags = ["A", "B", "C", "D", "E", "F", "G"
+  ];
 
   @override
    initState()   {
@@ -77,30 +78,32 @@ class _AzlistTestState extends State<AzlistTest> {
             );
           },
 
-          physics:BouncingScrollPhysics(),
-        indexBarData: tags,
-        indexHintBuilder: (context,hint)
-        {
-          return Container(
-            alignment: Alignment.center,
-            width: 60.0,
-            height: 60.0,
-            decoration: BoxDecoration(
-              color: Colors.red[700]!.withAlpha(200),
-              shape: BoxShape.circle,
-            ),
-            child:
-            Text(hint, style: TextStyle(color: Colors.white, fontSize: 30.0)),
-          );
-        },
-        indexBarMargin: EdgeInsets.all(0),
-        indexBarOptions: IndexBarOptions(
-          needRebuild: true,
-          decoration: getIndexBarDecoration(Colors.red[50]!),
-          downDecoration: getIndexBarDecoration(Colors.green[200]!),
-          indexHintTextStyle: TextStyle(fontWeight: FontWeight.bold),
-
-        )
+        //   physics:BouncingScrollPhysics(),
+        // indexBarData: tags,
+        // indexHintBuilder: (context,hint)
+        // {
+        //   return Container(
+        //     alignment: Alignment.center,
+        //     width: 60.0,
+        //     height: 60.0,
+        //     decoration: BoxDecoration(
+        //       color: Colors.red[700]!.withAlpha(200),
+        //       shape: BoxShape.rectangle,
+        //       borderRadius: BorderRadius.circular(15),
+        //     ),
+        //     child:
+        //     Text(hint, style: TextStyle(color: Colors.white, fontSize: 30.0)),
+        //   );
+        // },
+        // indexBarMargin: EdgeInsets.all(0),
+        // indexBarOptions: IndexBarOptions(
+        //   indexHintAlignment: Alignment.centerRight,
+        //   needRebuild: true,
+        //   decoration: getIndexBarDecoration(Colors.red[50]!),
+        //   downDecoration: getIndexBarDecoration(Colors.green[200]!),
+        //   indexHintTextStyle: TextStyle(fontWeight: FontWeight.bold),
+        //
+        // )
 
 
       ),

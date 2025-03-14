@@ -8,6 +8,7 @@ import '../../../azlistview_packages/normal_azlist.dart';
 import '../../../flutter_toast/toast_test.dart';
 import '../../../line_chart_features/bitcoin_price_graph.dart';
 import '../../../logging_features/logging_test.dart';
+import '../../../url_features/url_launcher_test.dart';
 import '../pages/error_test.dart';
 import '../pages/home_test.dart';
 import '../pages/login_test.dart';
@@ -70,7 +71,7 @@ class AppRouterVersion1{
       }
     else if(settings.name == '/camera_handler')
       {
-        return MaterialPageRoute(builder: (context)=> CameraPermissionDemo());
+        return MaterialPageRoute(builder: (context)=> UrlLauncherTest());
       }
     else
       {

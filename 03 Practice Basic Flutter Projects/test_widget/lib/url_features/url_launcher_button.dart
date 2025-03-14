@@ -13,9 +13,9 @@ class urlLauncherButton extends StatelessWidget {
   }
 
   void _launchURL() async {
-    if (await canLaunch(url)) {
       Uri uri = Uri.parse(url);
-      await launchUrl(uri);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri,mode: LaunchMode.externalApplication);
     } else {
       throw 'Could not launch $url';
     }

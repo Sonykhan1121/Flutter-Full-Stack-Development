@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:test_widget/TransformationController/image_zoom_and_scapping.dart';
+import 'package:test_widget/api_features/api_all_features/all_api_test.dart';
 import 'package:test_widget/azlistview_packages/azlist_test.dart';
 import 'package:test_widget/column_features/column_test.dart';
 import 'package:test_widget/handling_camera_features/camera_permission_demo.dart';
+import 'package:test_widget/scaffold_features/scaffold_test.dart';
 
 import '../../../azlistview_packages/normal_azlist.dart';
 import '../../../flutter_toast/toast_test.dart';
@@ -71,7 +73,7 @@ class AppRouterVersion1{
       }
     else if(settings.name == '/camera_handler')
       {
-        return MaterialPageRoute(builder: (context)=> UrlLauncherTest());
+        return MaterialPageRoute(builder: (context)=> AllApiTest());
       }
     else
       {

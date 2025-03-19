@@ -3,6 +3,7 @@ import 'package:test_widget/TransformationController/image_zoom_and_scapping.dar
 import 'package:test_widget/api_features/api_all_features/all_api_test.dart';
 import 'package:test_widget/azlistview_packages/azlist_test.dart';
 import 'package:test_widget/column_features/column_test.dart';
+import 'package:test_widget/future_builder_features/future_builder_test.dart';
 import 'package:test_widget/handling_camera_features/camera_permission_demo.dart';
 import 'package:test_widget/scaffold_features/scaffold_test.dart';
 
@@ -11,6 +12,7 @@ import '../../../flutter_toast/toast_test.dart';
 import '../../../line_chart_features/bitcoin_price_graph.dart';
 import '../../../logging_features/logging_test.dart';
 import '../../../url_features/url_launcher_test.dart';
+import '../../../website_wrapper_features/wrapper_test.dart';
 import '../pages/error_test.dart';
 import '../pages/home_test.dart';
 import '../pages/login_test.dart';
@@ -73,7 +75,7 @@ class AppRouterVersion1{
       }
     else if(settings.name == '/camera_handler')
       {
-        return MaterialPageRoute(builder: (context)=> AllApiTest());
+        return MaterialPageRoute(builder: (context)=> WrapperTest());
       }
     else
       {

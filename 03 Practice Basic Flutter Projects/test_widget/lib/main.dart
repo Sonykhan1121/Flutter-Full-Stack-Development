@@ -7,6 +7,7 @@ import 'package:test_widget/api_features/providers/posts_provider.dart';
 import 'package:test_widget/routes_features/onGenerateroute/routes/app_router_version1.dart';
 
 import 'gesturedetector_features/gesture.dart';
+import 'gesturedetector_features/scale.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
             // onGenerateRoute: AppRouterVersion1.route,
 
             // initialRoute: "/camera_handler",
-            home: Gesture(),
+            home: Scale(),
           );
         },
       ),

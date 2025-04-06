@@ -22,8 +22,9 @@ class FindLocation extends StatefulWidget {
      // Test if location services are enabled.
      serviceEnabled = await Geolocator.isLocationServiceEnabled();
      if (!serviceEnabled) {
-       await Geolocator.openAppSettings();
-       await Geolocator.openLocationSettings();
+       LocationPermission permission = await Geolocator.requestPermission();
+       // await Geolocator.openAppSettings();
+       // await Geolocator.openLocationSettings();
 
        // Location services are not enabled don't continue
        // accessing the position and request users of the
@@ -95,6 +96,21 @@ class FindLocation extends StatefulWidget {
 
      });
    }
+   void periodictest()
+   {
+     Stream<int> limitedStream = Stream.periodic(Duration(seconds: 1),(count)=>count).take(5);
+
+     limitedStream.listen(
+         (number){
+           print('Periodic update : $number');
+           currentLocation = 'Periodic update : $number';
+           setState(() {
+
+           });
+         }
+     );
+   }
+
    void stopRealTimeLocation()
    {
      _positionStream?.cancel();
@@ -154,6 +170,11 @@ class FindLocation extends StatefulWidget {
                ElevatedButton(
                  onPressed: stopRealTimeLocation,
                  child: Text('Stop Real-Time Location'),
+               ),
+               SizedBox(height: 10),
+               ElevatedButton(
+                 onPressed: periodictest,
+                 child: Text('Periodic test'),
                ),
              ],
            ),

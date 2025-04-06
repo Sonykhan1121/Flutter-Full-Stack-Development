@@ -9,6 +9,7 @@ import 'package:test_widget/routes_features/onGenerateroute/routes/app_router_ve
 
 import 'gesturedetector_features/gesture.dart';
 import 'gesturedetector_features/scale.dart';
+import 'location_features/find_location.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
             // onGenerateRoute: AppRouterVersion1.route,
 
             // initialRoute: "/camera_handler",
-            home: Finddevice(),
+            home: FindLocation(),
           );
         },
       ),

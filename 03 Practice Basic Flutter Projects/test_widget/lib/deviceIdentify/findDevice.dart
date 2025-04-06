@@ -61,7 +61,7 @@ Identifier: ${iosInfo.identifierForVendor}
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               IconButton(
-                icon: Icon(Icons.phone_android, size: 50, color: Colors.blue),
+                icon: Icon(Icons.device_unknown, size: 150, color: Colors.blue),
                 onPressed: _getDeviceInfo,
               ),
               SizedBox(height: 20),

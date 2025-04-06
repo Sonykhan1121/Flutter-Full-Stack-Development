@@ -43,6 +43,8 @@ dependencies:
   path: ^1.9.1
   html: ^0.15.5
   device_info_plus: ^11.3.3
+  geolocator: ^13.0.4
+  geocoding: ^3.0.0
 
 
 

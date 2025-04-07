@@ -6,6 +6,8 @@ import 'package:test_widget/api_features/providers/comments_provider.dart';
 import 'package:test_widget/api_features/providers/posts_provider.dart';
 import 'package:test_widget/deviceIdentify/findDevice.dart';
 import 'package:test_widget/routes_features/onGenerateroute/routes/app_router_version1.dart';
+import 'package:test_widget/slidable_features/list_slide.dart';
+import 'package:test_widget/slidable_features/list_slide_provider.dart';
 
 import 'gesturedetector_features/gesture.dart';
 import 'gesturedetector_features/scale.dart';
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> TextExpandedProvider()),
         ChangeNotifierProvider(create: (_)=> PostsProvider()),
         ChangeNotifierProvider(create: (_)=>CommentsProvider()),
+        ChangeNotifierProvider(create: (_)=> ListSlideProvider()),
         
       ],
       child: ScreenUtilInit(
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
             // onGenerateRoute: AppRouterVersion1.route,
 
             // initialRoute: "/camera_handler",
-            home: FindLocation(),
+            home: ListSlide(),
           );
         },
       ),

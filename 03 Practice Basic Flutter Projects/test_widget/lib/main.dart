@@ -8,7 +8,9 @@ import 'package:test_widget/deviceIdentify/findDevice.dart';
 import 'package:test_widget/routes_features/onGenerateroute/routes/app_router_version1.dart';
 import 'package:test_widget/slidable_features/list_slide.dart';
 import 'package:test_widget/slidable_features/list_slide_provider.dart';
+import 'package:test_widget/websocket_features/web_socket_screen.dart';
 
+import 'bluetooth_search_features/bluetooth_home_page.dart';
 import 'gesturedetector_features/gesture.dart';
 import 'gesturedetector_features/scale.dart';
 import 'location_features/find_location.dart';
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
             // onGenerateRoute: AppRouterVersion1.route,
 
             // initialRoute: "/camera_handler",
-            home: ListSlide(),
+            home: BluetoothHomePage(),
           );
         },
       ),

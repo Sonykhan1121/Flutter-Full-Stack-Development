@@ -1,133 +1,109 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_widget/bluetooth_search_features/searching_screen.dart';
 
-class BluetoothHomePage extends StatelessWidget {
-  const BluetoothHomePage({super.key});
+import 'bluetooth_scan_page.dart';
+
+class BluetoothHomePage extends StatefulWidget {
+  const BluetoothHomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bluetooth Finder'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Click the button below to search for devices',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                _startBluetoothSearch(context);
-              },
-              child: const Text('Start Search'),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _startBluetoothSearch(context);
-        },
-        child: const Icon(Icons.bluetooth_searching),
+  State<BluetoothHomePage> createState() => _BluetoothHomePageState();
+}
+
+class _BluetoothHomePageState extends State<BluetoothHomePage> with SingleTickerProviderStateMixin {
+  bool _isBluetoothOn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkBluetoothStatus();
+
+    // Listen for Bluetooth state changes
+    FlutterBluePlus.adapterState.listen((state) {
+      setState(() {
+        _isBluetoothOn = state == BluetoothAdapterState.on;
+      });
+    });
+  }
+
+  Future<void> _checkBluetoothStatus() async {
+    final state = await FlutterBluePlus.adapterState.first;
+    setState(() {
+      _isBluetoothOn = state == BluetoothAdapterState.on;
+    });
+  }
+
+  Future<void> _requestBluetoothPermission() async {
+    final permissions = [
+      Permission.bluetooth,
+      Permission.bluetoothScan,
+      Permission.bluetoothConnect,
+      Permission.bluetoothAdvertise,
+      Permission.location,
+    ];
+
+
+    // Request permissions
+    final statuses = await permissions.request();
+    print('map: $statuses');
+
+    // Check if all permissions are granted
+    final allGranted = statuses.values.every((status) => status.isGranted);
+
+    if (allGranted) {
+      // Try turning Bluetooth on
+      if (!_isBluetoothOn) {
+        try {
+          await FlutterBluePlus.turnOn();
+        } catch (e) {
+          debugPrint('Bluetooth turn on failed: $e');
+          _showBluetoothSettingsDialog();
+        }
+      }
+    } else {
+      _showPermissionDeniedDialog();
+    }
+  }
+
+
+  void _showBluetoothSettingsDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title:  Text('Bluetooth is Off'),
+        content:  Text('Please enable Bluetooth in your device settings to continue.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child:  Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              // Open app settings instead of Bluetooth settings directly
+              openAppSettings();
+            },
+            child:  Text('Open Settings'),
+          ),
+        ],
       ),
     );
   }
 
-  Future<void> _startBluetoothSearch(BuildContext context) async {
-    print('startBluetoothsearch function');
-    // Check if Bluetooth is enabled
-    bool isBluetoothEnabled = await FlutterBluetoothSerial.instance.isEnabled ?? false;
-
-    if (!isBluetoothEnabled) {
-      if (context.mounted) {
-        _showBluetoothDisabledDialog(context);
-      }
-      return;
-    }
-
-    // Request permissions
-    bool hasPermissions = await _requestBluetoothPermissions(context);
-
-    if (hasPermissions) {
-      // Navigate to search screen if permissions granted
-      if (context.mounted) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SearchingScreen()),
-        );
-      }
-    }
-  }
-
-  Future<bool> _requestBluetoothPermissions(BuildContext context) async {
-    // Check and request Bluetooth permissions
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.bluetooth,
-      Permission.bluetoothScan,
-      Permission.bluetoothConnect,
-      Permission.location, // Location is often required for Bluetooth scanning
-    ].request();
-
-    // Check if all permissions are granted
-    bool allGranted = true;
-    List<Permission> deniedPermissions = [];
-
-    statuses.forEach((permission, status) {
-      if (!status.isGranted) {
-        allGranted = false;
-        deniedPermissions.add(permission);
-      }
-    });
-
-    // If any permission is denied, show dialog to open settings
-    if (!allGranted && context.mounted) {
-      _showPermissionDeniedDialog(context, deniedPermissions);
-      return false;
-    }
-
-    return true;
-  }
-
-  void _showPermissionDeniedDialog(BuildContext context, List<Permission> deniedPermissions) {
+  void _showPermissionDeniedDialog() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Permissions Required'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'To find Bluetooth devices, this app needs the following permissions:',
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 12),
-            ...deniedPermissions.map((permission) => Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Text(
-                '• ${_getPermissionName(permission)}',
-                style: const TextStyle(fontSize: 14),
-              ),
-            )),
-            const SizedBox(height: 12),
-            const Text(
-              'Please enable these permissions in your device settings.',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
+        content: const Text('Bluetooth and location permissions are required to scan for devices.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: const Text('OK'),
           ),
-          ElevatedButton(
+          TextButton(
             onPressed: () {
               Navigator.pop(context);
               openAppSettings();
@@ -139,43 +115,63 @@ class BluetoothHomePage extends StatelessWidget {
     );
   }
 
-  void _showBluetoothDisabledDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Bluetooth is Disabled'),
-        content: const Text(
-          'Please enable Bluetooth to search for devices. Would you like to enable it now?',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              FlutterBluetoothSerial.instance.requestEnable();
-            },
-            child: const Text('Enable Bluetooth'),
-          ),
-        ],
+  void _navigateToScanPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const BluetoothScanPage(),
       ),
     );
   }
 
-  String _getPermissionName(Permission permission) {
-    switch (permission) {
-      case Permission.bluetooth:
-        return 'Bluetooth';
-      case Permission.bluetoothScan:
-        return 'Bluetooth Scan';
-      case Permission.bluetoothConnect:
-        return 'Bluetooth Connect';
-      case Permission.location:
-        return 'Location (needed for Bluetooth scanning)';
-      default:
-        return permission.toString();
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title:  Text('Finding Bluetooth Lists'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+             Text(
+              'You can find all bluetooth devices nearby.',
+              style: TextStyle(fontSize: 14.sp),
+            ),
+             SizedBox(height: 30.h),
+            ElevatedButton.icon(
+              icon:  Icon(Icons.bluetooth_searching),
+              label:  Text('Search Bluetooth Devices'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+                padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+              ),
+              onPressed: () async {
+                if (_isBluetoothOn) {
+                  _navigateToScanPage();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                     SnackBar(
+
+                      backgroundColor: Colors.blue,
+                      padding: EdgeInsets.symmetric(vertical: 15.h,horizontal: 15.w),
+                      content: Text('Please enable Bluetooth first using the floating button'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _requestBluetoothPermission,
+        tooltip: 'Enable Bluetooth',
+        child: Icon(_isBluetoothOn ? Icons.bluetooth : Icons.bluetooth_disabled),
+      ),
+    );
   }
+
 }

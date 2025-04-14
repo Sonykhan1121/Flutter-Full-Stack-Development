@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'bluetooth_scan_page.dart';
@@ -14,10 +15,19 @@ class BluetoothHomePage extends StatefulWidget {
 
 class _BluetoothHomePageState extends State<BluetoothHomePage> with SingleTickerProviderStateMixin {
   bool _isBluetoothOn = false;
+    MobileScannerController? controller = MobileScannerController();
+    String? scannedResult ="test";
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print('startwidgetBinding');
+      // showdialog();
+      _startQrScan();
+    });
+
+
     _checkBluetoothStatus();
 
     // Listen for Bluetooth state changes
@@ -25,6 +35,67 @@ class _BluetoothHomePageState extends State<BluetoothHomePage> with SingleTicker
       setState(() {
         _isBluetoothOn = state == BluetoothAdapterState.on;
       });
+    });
+  }
+  Future<void> _startQrScan() async {
+    controller = MobileScannerController();
+
+
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Scan"),
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  Navigator.of(context).pop();
+
+                },
+              ),
+            ],
+          ),
+          content: AspectRatio(
+            aspectRatio: 1,
+            child: MobileScanner(
+              controller: controller,
+              onDetect: (capture) async {
+                final barcode = capture.barcodes.isNotEmpty ? capture.barcodes.first : null;
+                if (barcode != null && barcode.rawValue != null) {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    scannedResult = barcode.rawValue!;
+
+                  });
+
+                  // _startDeviceScan();
+                }
+              },
+            ),
+          ),
+        );
+      },
+    );
+
+
+  }
+  void showdialog()
+  {
+    showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("Testing Widget binding"),
+        content: Text('This is message for widget testing . you can cancel it anytime!'),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: Icon(Icons.cancel)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.add_circle)),
+        ],
+      );
     });
   }
 
@@ -134,6 +205,7 @@ class _BluetoothHomePageState extends State<BluetoothHomePage> with SingleTicker
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(scannedResult!),
              Text(
               'You can find all bluetooth devices nearby.',
               style: TextStyle(fontSize: 14.sp),

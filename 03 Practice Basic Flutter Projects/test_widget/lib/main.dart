@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
             // onGenerateRoute: AppRouterVersion1.route,
 
             // initialRoute: "/camera_handler",
-            home: BluetoothHomePage(),
+            home: WebSocketScreen(),
           );
         },
       ),

@@ -95,7 +95,7 @@ class _BluetoothScanPageState extends State<BluetoothScanPage> with TickerProvid
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Scanning for Devices'),
+        title:  Text('Scanning for Devices'),
       ),
       body: Center(
         child: Column(
